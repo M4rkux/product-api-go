@@ -45,7 +45,7 @@ type productIDParameterWrapper struct {
 	// The id of the product to update from the database
 	// in: path
 	// required: true
-	ID int `json:id`
+	ID int `json:"id"`
 }
 
 func NewProducts(l *log.Logger) *Products {

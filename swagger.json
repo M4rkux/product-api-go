@@ -41,8 +41,9 @@
           {
             "type": "integer",
             "format": "int64",
+            "x-go-name": "ID",
             "description": "The id of the product to update from the database",
-            "name": "ID",
+            "name": "id",
             "in": "path",
             "required": true
           }
@@ -67,7 +68,7 @@
           "x-go-name": "Description"
         },
         "id": {
-          "description": "the id of this user",
+          "description": "The id of this user",
           "type": "integer",
           "format": "int64",
           "minimum": 1,

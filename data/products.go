@@ -91,7 +91,7 @@ func getNextID() int {
 }
 
 var productList = []*Product{
-	&Product{
+	{
 		ID:          1,
 		Name:        "Latte",
 		Description: "Frothy milky coffee",
@@ -100,7 +100,7 @@ var productList = []*Product{
 		CreatedOn:   time.Now().UTC().String(),
 		UpdatedOn:   time.Now().UTC().String(),
 	},
-	&Product{
+	{
 		ID:          2,
 		Name:        "Espresso",
 		Description: "Short and strong coffee without milk",

@@ -1,3 +1,16 @@
+// Package classification of Product API
+//
+// Documentation for Product API
+// Schemes: http
+// BasePath: /
+// Version: 1.0.0
+//
+// Consumes:
+// - application/json
+//
+// Produces:
+// - application/json
+// swagger:meta
 package handlers
 
 import (
@@ -15,10 +28,36 @@ type Products struct {
 	l *log.Logger
 }
 
+// A list of products returns in the response
+// swagger:response productsResponse
+type ProductsResponseWrapper struct {
+	// All products in the system
+	// in: body
+	Body []data.Product
+}
+
+// swagger:response noContent
+type productsNoContent struct {
+}
+
+// swagger:parameters updateProducts
+type productIDParameterWrapper struct {
+	// The id of the product to update from the database
+	// in: path
+	// required: true
+	ID int `json:id`
+}
+
 func NewProducts(l *log.Logger) *Products {
 	return &Products{l}
 }
 
+// swagger:route GET /products products listProducts
+// Returns a list of products
+// responses:
+// 200: productsResponse
+//
+// GetProducts returns the products from the data store
 func (p *Products) GetProducts(rw http.ResponseWriter, r *http.Request) {
 	p.l.Println("Handle GET Products")
 	lp := data.GetProducts()
@@ -36,6 +75,12 @@ func (p *Products) AddProducts(rw http.ResponseWriter, r *http.Request) {
 	data.AddProduct(&prod)
 }
 
+// swagger:route PUT /products/{id} products updateProducts
+// Returns a list of products
+// responses:
+// 201: noContent
+//
+// UpdateProducts updates a product from the data store
 func (p *Products) UpdateProducts(rw http.ResponseWriter, r *http.Request) {
 	vars := mux.Vars(r)
 	id, err := strconv.Atoi(vars["id"])
